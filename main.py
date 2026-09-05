@@ -1,7 +1,6 @@
 from pyscript import web, when, window
 
 from excel_manager import process_excel
-from save_manager import Save, load
 
 # =========================================================
 # APPLICATION STATE
@@ -171,12 +170,12 @@ def display_reports():
 # =========================================================
 
 @when("click", "#update-button")
-def update():
+async def update():
     """
     Lance le traitement Excel et affiche le fichier résultant.
     """
 
-    result = process_excel(
+    result = await process_excel(
         bookstore,
         reports
     )
