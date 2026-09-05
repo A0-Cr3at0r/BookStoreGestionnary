@@ -1,18 +1,202 @@
 <!DOCTYPE html>
-<html>
-  <head>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width,initial-scale=1" />
-      <title>🦜 Polyglot - Piratical PyScript</title>
-      <link rel="stylesheet" href="https://pyscript.net/releases/2026.7.3/core.css">
-      <script type="module" src="https://pyscript.net/releases/2026.7.3/core.js"></script>
-  </head>
-    <body>
-        <h1>Polyglot 🦜 💬 🇬🇧 ➡️ 🏴‍☠️</h1>
-        <p>Translate English into Pirate speak...</p>
-        <input type="text" id="english" placeholder="Type English here..." />
-        <button id="translate-button">Translate</button>
-        <div id="output"></div>
-        <script type="py" src="./main.py" config="./pyscript.json"></script>
-    </body>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>bookstoreGestionnary</title>
+
+    <!-- PyScript -->
+    <link
+        rel="stylesheet"
+        href="https://pyscript.net/releases/2026.7.3/core.css"
+    >
+
+    <script
+        type="module"
+        src="https://pyscript.net/releases/2026.7.3/core.js"
+    ></script>
+
+    <!-- Application -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="app-name">
+            bookstoreGestionnary
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main>
+
+        <!-- ================= BOOKSTORE ================= -->
+
+        <section class="bookstore-section">
+
+            <h2>bookstore</h2>
+
+            <div
+                class="drop-zone"
+                id="bookstore-drop-zone"
+            >
+                <p>
+                    Glissez-déposez votre fichier Excel ici
+                </p>
+
+                <span>
+                    ou cliquez pour sélectionner un fichier
+                </span>
+            </div>
+
+            <input
+                type="file"
+                id="bookstore-file"
+                name="bookstore-file"
+                accept=".xlsx,.xls"
+                hidden
+            >
+
+
+            <!-- Fichier actuellement sélectionné -->
+
+            <div
+                class="selected-file"
+                id="bookstore-selected-file"
+            >
+                <!-- Généré par PyScript -->
+
+                <!-- Exemple :
+
+                <span>bookstore.xlsx</span>
+
+                <button
+                    type="button"
+                    class="remove-file"
+                >
+                    ×
+                </button>
+
+                -->
+            </div>
+
+        </section>
+
+
+        <!-- ================= UPDATE ================= -->
+
+        <section class="update-section">
+
+            <button
+                type="button"
+                id="update-button"
+            >
+                Update
+            </button>
+
+        </section>
+
+
+        <!-- ================= REPORTS ================= -->
+
+        <section class="reports-section">
+
+            <h2>reports</h2>
+
+            <div
+                class="drop-zone"
+                id="reports-drop-zone"
+            >
+                <p>
+                    Glissez-déposez vos fichiers Excel ici
+                </p>
+
+                <span>
+                    ou cliquez pour sélectionner des fichiers
+                </span>
+            </div>
+
+            <input
+                type="file"
+                id="report-file"
+                name="report-file"
+                accept=".xlsx,.xls"
+                multiple
+                hidden
+            >
+
+
+            <!-- Liste des fichiers sélectionnés -->
+
+            <div
+                class="reports-list"
+                id="reports-list"
+            >
+
+                <!-- Généré par PyScript -->
+
+                <!-- Exemple :
+
+                <div class="report-item">
+
+                    <span>
+                        rapport_01.xlsx
+                    </span>
+
+                    <button
+                        type="button"
+                        class="remove-file"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+                -->
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= OUTPUT ================= -->
+
+    <footer>
+
+        <div
+            class="output-section"
+            id="output-section"
+        >
+            <!-- Généré par PyScript -->
+        </div>
+
+    </footer>
+
+
+    <!-- ================= PYSCRIPT ================= -->
+
+    <py-config>
+        [[fetch]]
+        files = ["./excel_manager.py", "./save_manager.py"]
+    </py-config>
+
+    <script
+        type="py"
+        src="./main.py"
+    ></script>
+
+</body>
+
 </html>
