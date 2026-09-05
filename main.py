@@ -185,8 +185,9 @@ async def update():
 
 def display_output(file):
     """
-    Affiche le fichier Excel résultant avec un bouton
-    permettant de le télécharger.
+    Affiche le fichier Excel résultant avec :
+    - son nom comme lien de téléchargement ;
+    - un bouton permettant également de le télécharger.
     """
 
     container = web.page["output-section"]
@@ -195,19 +196,27 @@ def display_output(file):
 
     if file is None:
         container.append(
-            web.span("Aucun fichier de librairie fourni")
+            web.span(
+                "Aucun fichier de librairie fourni",
+                classes=["output-error"]
+            )
         )
         return
 
     download_url = window.URL.createObjectURL(file)
 
     file_element = web.div(
-        web.span(file.name),
+        web.a(
+            file.name,
+            href=download_url,
+            download=file.name,
+            classes=["output-file-name"]
+        ),
         web.a(
             "Télécharger",
             href=download_url,
             download=file.name,
-            classes=["download-file"]
+            classes=["download-button"]
         ),
         classes=["output-file"]
     )
@@ -226,6 +235,8 @@ def allow_bookstore_drop(event):
 
     event.preventDefault()
 
+    event.currentTarget.classList.add("drag-over")
+
 
 @when("drop", "#bookstore-drop-zone")
 def bookstore_drop(event):
@@ -235,12 +246,13 @@ def bookstore_drop(event):
 
     event.preventDefault()
 
+    event.currentTarget.classList.remove("drag-over")
+
     files = event.dataTransfer.files
 
     if len(files) == 0:
         return
 
-    # Le bookstore n'accepte qu'un seul fichier.
     set_bookstore(files[0])
 
 
@@ -252,6 +264,8 @@ def allow_reports_drop(event):
 
     event.preventDefault()
 
+    event.currentTarget.classList.add("drag-over")
+
 
 @when("drop", "#reports-drop-zone")
 def reports_drop(event):
@@ -260,6 +274,8 @@ def reports_drop(event):
     """
 
     event.preventDefault()
+
+    event.currentTarget.classList.remove("drag-over")
 
     files = event.dataTransfer.files
 
