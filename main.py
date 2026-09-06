@@ -281,3 +281,23 @@ def reports_drop(event):
 
     for file in files:
         add_report(file)
+
+
+# =========================================================
+# THEME
+# =========================================================
+
+@when("keydown", "body")
+def toggle_theme(event):
+    """
+    Bascule entre le mode sobre et le mode coloré
+    avec le raccourci Ctrl  + M.
+    """
+
+    if (
+        event.ctrlKey
+        and event.key.lower() == "m"
+    ):
+        event.preventDefault()
+
+        web.page.body.classList.toggle("color-mode")
